@@ -3,9 +3,9 @@ This is a survey of factors affecting retention of MDS material.
 
 #### Contributors
 - [Shayne Andrews](https://github.com/shayne-andrews)
+- [Sayanti Ghosh](https://github.com/Sayanti86)
 - [Harjyot Kaur](https://github.com/HarjyotKaur)
 - [Mike Yuan](https://github.com/Mikeymice)
-- [Sayanti Ghosh](https://github.com/Sayanti86)
 
 #### Milestones
 
