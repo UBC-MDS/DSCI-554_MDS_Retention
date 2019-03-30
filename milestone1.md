@@ -22,7 +22,7 @@ Linear regression will be performed to examine the correlation between the featu
 
 For linear models, the assumption is that there is an interaction between hours of sleep and hours of studying. For example, a student will have less time to sleep if he or she spends more time to study. ANOVA will be used to determine whether the interaction is significant. 
 
-Reference : https://scikit-learn.org/stable/modules/multiclass.html
+<sup>Reference : https://scikit-learn.org/stable/modules/multiclass.html</sup>
 
 #### Aspects of the _UBC Office of Research Ethics document on Using Online Surveys_ that are relevant to our proposed survey.  
 * __Current law__ :    
