@@ -1,7 +1,7 @@
 
 
 ## Question
-Identify the question that your team in interested in answering with the survey.
+Identify the question that your team is interested in answering with the survey.
 
 #### Topic of Research:
 * Does hours of sleep/study/lectures influence retention level of MDS material?
