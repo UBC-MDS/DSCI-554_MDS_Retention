@@ -6,9 +6,20 @@ library(tidyverse)
 library(ggplot2)
 library(stringr)
 
+
+# %%
+# helper functions
+
+to_bool <- function(x) {ifelse(x == 'True', TRUE, FALSE)}
+
+# %%
+# set global variables
+
+BIN_WIDTH = 2.0
+
 # %%
 # read csv
-raw_df <- read.csv('data/mds-retention_2019-04-04.csv')
+raw_df <- read.csv('data/mds-retention_2019-04-04.csv', stringsAsFactors = FALSE)
 
 #print(head(raw_df))
 
@@ -31,16 +42,28 @@ names(raw_df) <- questions
 #  get deciding factors
 d_factors <- raw_df[,1:5]
 
-d_factors[,c(4,5)] <- sapply( d_factors[,c(4,5)], as.numeric )
+# convert character to numeric for hours
+d_factors[,2:5] <- sapply( d_factors[,2:5], as.numeric )
 
 retentions <- raw_df[,6:ncol(raw_df)]
+# convert character to bool for retention question
+retentions <- retentions %>%
+  mutate_all(to_bool)
+
+
+# %%
+# save clean data
+clean_df <- d_factors %>%
+  cbind(retentions)
+cat(sprintf("\n========>saving clean data to result\n\n"))
+write.csv(clean_df , file = 'result/clean_data.csv')
 
 # %%
 # make plot for deciding factors
 discrete_d_factor_plt <- d_factors[,c(-4,-5)] %>%
   gather(key="questions", value="answers") %>%
   ggplot(aes(x = answers)) +
-  geom_histogram(stat = 'count') +
+  geom_bar( stat = 'count') +
   facet_wrap(~questions,scales = "free", ncol=1)
 
 ggsave(filename="discrete_deciding_factors.png",
@@ -51,7 +74,7 @@ ggsave(filename="discrete_deciding_factors.png",
 continuois_d_factors_hist <- d_factors[,c(4,5)] %>%
     gather(key="questions", value="answers") %>%
     ggplot(aes(x = answers)) +
-    geom_histogram() +
+    geom_histogram(binwidth=BIN_WIDTH) +
     facet_wrap(~questions,scales = "free", ncol=1)
 
 ggsave(filename="continuous_deciding_factors_hist.png",
@@ -62,7 +85,7 @@ ggsave(filename="continuous_deciding_factors_hist.png",
 continuois_d_factors_preq <- d_factors[,c(4,5)] %>%
     gather(key="questions", value="answers") %>%
     ggplot(aes(x = answers)) +
-    geom_freqpoly() +
+    geom_freqpoly(binwidth=BIN_WIDTH) +
     facet_wrap(~questions,scales = "free", ncol=1)
 
 ggsave(filename="continuous_deciding_factors_freqp.png",
@@ -71,7 +94,7 @@ ggsave(filename="continuous_deciding_factors_freqp.png",
 
 # %%
 # plot the retention questions
-summary(retentions)
+#summary(retentions)
 
 retentions <- sapply( retentions, as.character )
 
@@ -81,7 +104,7 @@ retentions_plot <- retentions %>%
   gather(key="questions", value="answers") %>%
   mutate(questions = str_wrap(questions, width =  30)) %>%
   ggplot(aes(x = answers)) +
-  geom_histogram(stat="count") +
+  geom_bar(stat="count") +
   facet_wrap(~questions,scales = "free", ncol=3)
 
 ggsave(filename="retentions.png",
