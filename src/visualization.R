@@ -4,7 +4,7 @@
 # import library
 library(tidyverse)
 library(ggplot2)
-
+library(stringr)
 
 # %%
 # read csv
@@ -14,7 +14,7 @@ raw_df <- read.csv('data/mds-retention_2019-04-04.csv')
 
 # %%
 # data cleaning
-#remove second row as irrlevant
+# remove second row as irrlevant
 raw_df <- raw_df[-2,]
 
 # get only the questions
@@ -67,4 +67,23 @@ continuois_d_factors_preq <- d_factors[,c(4,5)] %>%
 
 ggsave(filename="continuous_deciding_factors_freqp.png",
   plot=continuois_d_factors_preq,
+  path='img')
+
+# %%
+# plot the retention questions
+summary(retentions)
+
+retentions <- sapply( retentions, as.character )
+
+retentions <- as.data.frame(retentions)
+
+retentions_plot <- retentions %>%
+  gather(key="questions", value="answers") %>%
+  mutate(questions = str_wrap(questions, width =  30)) %>%
+  ggplot(aes(x = answers)) +
+  geom_histogram(stat="count") +
+  facet_wrap(~questions,scales = "free", ncol=3)
+
+ggsave(filename="retentions.png",
+  plot=retentions_plot,
   path='img')
