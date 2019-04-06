@@ -224,3 +224,15 @@ ggsave(filename="score_average_hist.png",
 # %%
 score_hist_plot
 score_distribution_plot
+
+
+# %%
+# summary table
+
+data <- read.csv(paste(PREPATH, 'result/clean_data_short.csv', sep="" ),
+  stringsAsFactors = FALSE)
+
+colnames(data)[2:12] <- questions
+
+summary_df <- data.frame(unclass(summary(data)), check.names = FALSE, stringsAsFactors = FALSE)
+summary_df

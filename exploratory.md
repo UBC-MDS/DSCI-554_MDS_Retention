@@ -335,3 +335,105 @@ score_distribution_plot
 ```
 
 ![](exploratory_files/figure-gfm/unnamed-chunk-13-2.png)<!-- -->
+
+``` r
+data <- read.csv(paste(PREPATH, 'result/clean_data_short.csv', sep="" ),
+  stringsAsFactors = FALSE)
+# if you prefer the long question header otherwise comment it out
+colnames(data)[2:12] <- questions
+
+summary_df <- data.frame(unclass(summary(data)), check.names = FALSE, stringsAsFactors = FALSE)
+summary_df
+```
+
+    ##                  X Which MDS cohort do you belong to?
+    ## X   Min.   : 1.0                   Length:55         
+    ## X.1 1st Qu.:14.5                   Class :character  
+    ## X.2 Median :28.0                   Mode  :character  
+    ## X.3 Mean   :28.0                                 <NA>
+    ## X.4 3rd Qu.:41.5                                 <NA>
+    ## X.5 Max.   :55.0                                 <NA>
+    ##     On average during MDS, how many lectures do you attend per week? - Average Lectures (per week)
+    ## X                                                                                  Min.   :1.000  
+    ## X.1                                                                                1st Qu.:8.000  
+    ## X.2                                                                                Median :8.000  
+    ## X.3                                                                                Mean   :7.582  
+    ## X.4                                                                                3rd Qu.:8.000  
+    ## X.5                                                                                Max.   :8.000  
+    ##     On average during MDS, how many labs do you attend per week? - Average Labs (per week)
+    ## X                                                                          Min.   :1.000  
+    ## X.1                                                                        1st Qu.:4.000  
+    ## X.2                                                                        Median :4.000  
+    ## X.3                                                                        Mean   :3.709  
+    ## X.4                                                                        3rd Qu.:4.000  
+    ## X.5                                                                        Max.   :4.000  
+    ##     On average during MDS, how many hours of sleep did you get per week? - Average Hours (per week)
+    ## X                                                                                   Min.   : 5.20  
+    ## X.1                                                                                 1st Qu.:42.25  
+    ## X.2                                                                                 Median :50.00  
+    ## X.3                                                                                 Mean   :47.67  
+    ## X.4                                                                                 3rd Qu.:54.40  
+    ## X.5                                                                                 Max.   :70.20  
+    ##     On average during MDS, how many hours of studying (outside lectures & labs) did you do per week? - Average Hours (per week)
+    ## X                                                                                                               Min.   : 0.00  
+    ## X.1                                                                                                             1st Qu.:16.21  
+    ## X.2                                                                                                             Median :24.08  
+    ## X.3                                                                                                             Mean   :26.24  
+    ## X.4                                                                                                             3rd Qu.:31.90  
+    ## X.5                                                                                                             Max.   :65.63  
+    ##     Non-zero correlation implies non-zero co-variance.
+    ## X                                      Mode :logical  
+    ## X.1                                    FALSE:25       
+    ## X.2                                    TRUE :30       
+    ## X.3                                               <NA>
+    ## X.4                                               <NA>
+    ## X.5                                               <NA>
+    ##     Recall= TP/(TP + FP)
+    ## X        Mode :logical  
+    ## X.1      FALSE:26       
+    ## X.2      TRUE :29       
+    ## X.3                 <NA>
+    ## X.4                 <NA>
+    ## X.5                 <NA>
+    ##     For a decision tree algorithm the threshold value for splitting features at each node, is a hyper-parameter.
+    ## X                                                                                                Mode :logical  
+    ## X.1                                                                                              FALSE:26       
+    ## X.2                                                                                              TRUE :29       
+    ## X.3                                                                                                         <NA>
+    ## X.4                                                                                                         <NA>
+    ## X.5                                                                                                         <NA>
+    ##     L1 regularisation gives sparsity, but L2 does not.
+    ## X                                      Mode :logical  
+    ## X.1                                    FALSE:11       
+    ## X.2                                    TRUE :44       
+    ## X.3                                               <NA>
+    ## X.4                                               <NA>
+    ## X.5                                               <NA>
+    ##     For the function (4 log n +16n ) has asymptotic running time slower than linear time O(n).
+    ## X                                                                              Mode :logical  
+    ## X.1                                                                            FALSE:40       
+    ## X.2                                                                            TRUE :15       
+    ## X.3                                                                                       <NA>
+    ## X.4                                                                                       <NA>
+    ## X.5                                                                                       <NA>
+    ##     Increasing MCMC sample size makes the point estimate closer to the true parameter value.
+    ## X                                                                            Mode :logical  
+    ## X.1                                                                          FALSE:20       
+    ## X.2                                                                          TRUE :35       
+    ## X.3                                                                                     <NA>
+    ## X.4                                                                                     <NA>
+    ## X.5                                                                                     <NA>
+    ##                  s1              s2              s3              s4
+    ## X   Mode :logical   Mode :logical   Mode :logical   Mode :logical  
+    ## X.1 FALSE:25        FALSE:29        FALSE:29        FALSE:11       
+    ## X.2 TRUE :30        TRUE :26        TRUE :26        TRUE :44       
+    ## X.3            <NA>            <NA>            <NA>            <NA>
+    ## X.4            <NA>            <NA>            <NA>            <NA>
+    ## X.5            <NA>            <NA>            <NA>            <NA>
+    ##                  s5              s6          average
+    ## X   Mode :logical   Mode :logical   Min.   :0.1667  
+    ## X.1 FALSE:15        FALSE:35        1st Qu.:0.3333  
+    ## X.2 TRUE :40        TRUE :20        Median :0.5000  
+    ## X.3            <NA>            <NA> Mean   :0.5636  
+    ## X.4            <NA>            <NA> 3rd Qu.:0.6667  
+    ## X.5            <NA>            <NA> Max.   :1.0000
