@@ -1,0 +1,7 @@
+questions,answer_key
+Non-zero correlation implies non-zero covariance which implies E(XY) NOT EQUAL TO E(X).E(Y),TRUE
+Recall = TP/(TP + FP),FALSE
+"For a decision tree algorithm the threshold value for splitting features at each node, is a hyper-parameter.",FALSE
+"L1 regularisation gives sparsity , but L2 does not.",TRUE
+For the function (4 log n +16n ) has asymptotic running time slower than linear time O(n).,FALSE
+Increasing MCMC sample size makes the point estimate closer to the true parameter value.,FALSE
