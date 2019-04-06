@@ -36,3 +36,6 @@ For linear models, the assumption is that there is an interaction between hours 
 >We will create our survey using SurveyMonkey – www.surveymonkey.com , as we are not collecting any personal information also Survey monkey facilitates anonymous responses. Below is the link which states the anonymous response feature of Survey Monkey :   
 Anonymous Response by Survey Monkey : _https://help.surveymonkey.com/articles/en_US/kb/How-do-I-make-surveys-anonymous_
 
+* Changes to the survey : 
+> Due to technical issue we moved our survey from Survey Monkey to Qualitrics : https://ubc.ca1.qualtrics.com
+
