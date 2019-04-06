@@ -27,7 +27,7 @@ library(tidyverse)
     ## ✖ dplyr::lag()    masks stats::lag()
 
 ``` r
-library(ggplot2)
+library(ggplot2); theme_set(theme_classic())
 library(stringr)
 ```
 

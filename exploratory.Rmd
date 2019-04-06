@@ -14,7 +14,7 @@ About: This file is meant to read the raw csv, perform EDA and basic data cleani
 ```{r}
 # import library
 library(tidyverse)
-library(ggplot2)
+library(ggplot2); theme_set(theme_classic())
 library(stringr)
 
 ```
@@ -186,6 +186,7 @@ retentions_plot <- retentions %>%
   facet_wrap(~questions,scales = "free", ncol=3)
 
 cat(sprintf("\n========> saving retention question plots\n\n"))
+
 ggsave(filename="retentions.png",
   plot=retentions_plot,
   path= paste(PREPATH, 'img', sep=""))
