@@ -1,42 +1,44 @@
-# %% [markdown]
-# # Data Exploratory and Visualization
-#
-# @author: Mike Yuan, Shayne Andrew
-#
-# Date: April 2019
-#
-# About: This file is meant to read the raw csv, perform EDA and basic data cleaning
-#
+---
+output: github_document
+---
+# Data Exploratory and Visualization
 
-# %% [markdown]
-# ## Load Library and helper functions
+@author: Mike Yuan, Shayne Andrew
 
-# %%
+Date: April 2019
+
+About: This file is meant to read the raw csv, perform EDA and basic data cleaning
+
+## Load Library and helper functions
+
+```{r}
 # import library
 library(tidyverse)
 library(ggplot2)
 library(stringr)
 
+```
 
-# %%
+```{r}
 # helper functions
 
 to_bool <- function(x) {ifelse(x == 'True', TRUE, FALSE)}
 
+```
 
-# %% [markdown]
-# ## Define global varible for binwidth when plotting histogram
+## Define global varible for binwidth when plotting histogram
 
-# %%
+```{r}
 # set global variables
 
 BIN_WIDTH = 2.0
 PREPATH = ''
+```
 
-# %% [markdown]
-# ## Reading and preparing the data dataframe
-# **IMPORTANT!!!** Depend on where you run the file, assigned `"../"` to `PREPATH` above. Otherwise, keep it `''` if you are running from project's `root` directory
-# %%
+## Reading and preparing the data dataframe
+**important** Depend on where you run the file, assigned `"../"` to `PREPATH` above. Otherwise, keep it `''` if you are running from project's `root` directory
+
+```{r}
 # read csv
 raw_df <- read.csv(paste(PREPATH, 'data/mds-retention_2019-04-04.csv', sep="" ),
   stringsAsFactors = FALSE)
@@ -45,8 +47,9 @@ raw_df <- read.csv(paste(PREPATH, 'data/mds-retention_2019-04-04.csv', sep="" ),
 
 answer_key <- read.csv(paste(PREPATH, 'data/answer_key.csv', sep="" ),
   stringsAsFactors = FALSE)
+```
 
-# %%
+```{r}
 # data cleaning
 # remove second row as irrlevant
 raw_df <- raw_df[-2,]
@@ -73,8 +76,9 @@ retentions <- retentions %>%
 # enforce the questions in answer_key and dataframe matche
 answer_key$questions <- colnames(retentions)
 
+```
 
-# %%
+```{r}
 # save clean data
 clean_df <- d_factors %>%
   cbind(retentions)
@@ -84,14 +88,14 @@ cat(sprintf("\n========>saving clean data to result\n\n"))
 write.csv(clean_df , file = paste(PREPATH, 'result/clean_data_long.csv', sep=""))
 
 # showing the head of the clean data for Rmd
-head(clean_df)
+#head(clean_df)
+```
 
-# %% [markdown]
-# ### Preparing clean data for data analysis
-# The goal here is to create a clean dataset with shorter header and score for each question
-# Also, include the average score
+### Preparing clean data for data analysis
+The goal here is to create a clean dataset with shorter header and score for each question
+Also, include the average score
 
-# %%
+```{r}
 # prepare for clean data with short handing for data anaysis
 clean_data_short <- clean_df
 
@@ -112,8 +116,10 @@ clean_data_short <- clean_data_short %>%
 cat(sprintf("\n========>saving clean data with short header and scores\n\n"))
 write.csv(clean_data_short , file = paste(PREPATH, 'result/clean_data_short.csv', sep=""))
 
+head(clean_data_short)
+```
 
-# %%
+```{r}
 # make plot for deciding factors
 cat(sprintf("\n========> saving deciding factor plots\n\n"))
 discrete_d_factor_plt <- d_factors[,c(-4,-5)] %>%
@@ -147,17 +153,18 @@ continuous_d_factors_preq <- d_factors[,c(4,5)] %>%
 ggsave(filename="continuous_deciding_factors_freqp.png",
   plot=continuous_d_factors_preq,
   path= paste(PREPATH, 'img', sep=""))
+```
 
-# %% [markdown]
-# Show deciding factor plots
+Show deciding factor plots
 
-# %%
+```{r}
 # show continous
 continuous_d_factors_preq
 continuous_d_factors_hist
 discrete_d_factor_plt
+```
 
-# %%
+```{r}
 # plot the retention questions
 
 
@@ -180,16 +187,18 @@ cat(sprintf("\n========> saving retention question plots\n\n"))
 ggsave(filename="retentions.png",
   plot=retentions_plot,
   path= paste(PREPATH, 'img', sep=""))
+```
 
-# %% [markdown]
-# show renteion plot
-# %%
+show renteion plot
+
+```{r}
 # show retention plot
 retentions_plot
+```
 
-# %% [markdown]
-# show distribution of the average scores
-# %%
+show distribution of the average scores
+
+```{r}
 score_distribution_plot <- clean_data_short %>%
   ggplot(aes(x = average)) +
   geom_density( fill ='lightblue') +
@@ -217,10 +226,11 @@ ggsave(filename="score_average_hist.png",
   plot=score_hist_plot,
   path= paste(PREPATH, 'img', sep=""))
 
+```
 
-# %% [markdown]
-# Show score average plots
+Show score average plots
 
-# %%
+```{r}
 score_hist_plot
 score_distribution_plot
+```
