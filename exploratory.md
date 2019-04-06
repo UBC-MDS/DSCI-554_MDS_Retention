@@ -133,11 +133,11 @@ clean_data_short <- clean_data_short %>%
          s6 = (r6 == FALSE)) %>%
   mutate(average = (s1 + s2 + s3 + s4 + s5 + s6)/6)
 
-cat(sprintf("\n========>saving clean data with short header and scores\n\n"))
+cat(sprintf("\n========> saving clean data with short header and scores\n\n"))
 ```
 
     ## 
-    ## ========>saving clean data with short header and scores
+    ## ========> saving clean data with short header and scores
 
 ``` r
 write.csv(clean_data_short , file = paste(PREPATH, 'result/clean_data_short.csv', sep=""))
@@ -185,6 +185,7 @@ ggsave(filename="discrete_deciding_factors.png",
 ``` r
 continuous_d_factors_hist <- d_factors[,c(4,5)] %>%
     gather(key="questions", value="answers") %>%
+    mutate(questions = str_wrap(questions, width = 80)) %>%
     ggplot(aes(x = answers)) +
     geom_histogram(binwidth=BIN_WIDTH) +
     facet_wrap(~questions,scales = "free", ncol=1)
@@ -199,6 +200,7 @@ ggsave(filename="continuous_deciding_factors_hist.png",
 ``` r
 continuous_d_factors_preq <- d_factors[,c(4,5)] %>%
     gather(key="questions", value="answers") %>%
+    mutate(questions = str_wrap(questions, width = 80)) %>%
     ggplot(aes(x = answers)) +
     geom_freqpoly(binwidth=BIN_WIDTH) +
     facet_wrap(~questions,scales = "free", ncol=1)
