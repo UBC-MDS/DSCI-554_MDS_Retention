@@ -14,6 +14,7 @@ This is a survey of factors affecting retention of MDS material.
 |---|---|
 |Milestone 1|[Proposal](milestone1.md)|
 |Milestone 2|[Survey](https://ubc.ca1.qualtrics.com/jfe/form/SV_eUS5juWqmoXA1Ux), [EDA/Summary](https://github.ubc.ca/MDS-2018-19/MDS_Retention/blob/v0.2/exploratory.md)(private access required)|
+|Milestone 3|[Final Report](https://github.com/UBC-MDS/DSCI-554_MDS_Retention/blob/master/doc/report.pdf)|
 
 #### Contributing
 
